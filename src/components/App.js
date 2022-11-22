@@ -23,6 +23,21 @@ function App() {
    * fetch data from api on mount. 
    */
 
+   const getData = async () => {
+    fetch(
+      `https://jsonplaceholder.typicode.com/users`
+    )
+      .then((results) => results.json())
+      .then((data) => setData(data));
+  };
+
+  
+
+  useEffect(() => {
+    getData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
   <div className='App'>
     { data.map((_data, i) => <p key={_data.id}>{i}.&nbsp;{_data.name}</p>) }
